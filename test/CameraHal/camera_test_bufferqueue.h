@@ -4,7 +4,7 @@
 #ifdef ANDROID_API_JB_OR_LATER
 
 #include <gui/Surface.h>
-#include <gui/SurfaceTexture.h>
+#include <gui/GLConsumer.h>
 #include <gui/SurfaceComposerClient.h>
 
 #include "camera_test.h"
@@ -126,8 +126,8 @@ public:
     BQ_BufferSourceInput(int tex_id, sp<Camera> camera) :
                   BufferSourceInput(camera), mTexId(tex_id) {
         mBufferQueue = new BufferQueue(true, 1);
-        sp<ISurfaceTexture> surfaceTexture = mBufferQueue;
-        mWindowTapIn = new SurfaceTextureClient(surfaceTexture);
+        sp<IGraphicBufferProducer> bufferProducer = mBufferQueue;
+        mWindowTapIn = new SurfaceTextureClient(bufferProducer);
         mCamera->setBufferSource(mBufferQueue, NULL);
     }
     virtual ~BQ_BufferSourceInput() {

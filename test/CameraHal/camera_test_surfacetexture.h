@@ -5,7 +5,7 @@
 
 #ifdef ANDROID_API_JB_OR_LATER
 #include <gui/Surface.h>
-#include <gui/SurfaceTexture.h>
+#include <gui/GLConsumer.h>
 #include <gui/SurfaceComposerClient.h>
 #else
 #include <surfaceflinger/Surface.h>
@@ -31,7 +31,7 @@
 
 using namespace android;
 
-class FrameWaiter : public android::SurfaceTexture::FrameAvailableListener {
+class FrameWaiter : public android::GLConsumer::FrameAvailableListener {
 public:
     FrameWaiter():
             mPendingFrames(0) {
@@ -99,10 +99,10 @@ public:
     void deinit();
     void getId(const char **name);
 
-    virtual sp<SurfaceTexture> getST();
+    virtual sp<GLConsumer> getST();
 
 protected:
-    sp<SurfaceTexture> mST;
+    sp<GLConsumer> mST;
     sp<SurfaceTextureClient> mSTC;
     sp<ANativeWindow> mANW;
     int mTexId;
@@ -115,7 +115,7 @@ public:
     void initialize(int display, int tex_id);
     void deinit();
 
-    // drawTexture draws the SurfaceTexture over the entire GL viewport.
+    // drawTexture draws the GLConsumer over the entire GL viewport.
     void drawTexture();
 
 private:
@@ -192,7 +192,7 @@ public:
 
 private:
     SurfaceTextureBase *mSurfaceTextureBase;
-    sp<SurfaceTexture> mSurfaceTexture;
+    sp<GLConsumer> mSurfaceTexture;
     sp<FrameWaiter> mFW;
 };
 
@@ -201,7 +201,7 @@ public:
     ST_BufferSourceInput(int tex_id, sp<Camera> camera) :
                  BufferSourceInput(camera), mTexId(tex_id) {
         mSurfaceTexture = new SurfaceTextureBase();
-        sp<SurfaceTexture> surface_texture;
+        sp<GLConsumer> surface_texture;
         mSurfaceTexture->initialize(mTexId);
         surface_texture = mSurfaceTexture->getST();
         surface_texture->setSynchronousMode(true);

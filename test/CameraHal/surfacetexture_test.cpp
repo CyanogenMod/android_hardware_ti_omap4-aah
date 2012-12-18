@@ -41,7 +41,7 @@
 #include <string.h>
 #include <climits>
 
-#include <gui/SurfaceTexture.h>
+#include <gui/GLConsumer.h>
 #include <gui/SurfaceTextureClient.h>
 #include <ui/GraphicBuffer.h>
 #include <ui/GraphicBufferMapper.h>
@@ -111,7 +111,7 @@ using namespace android;
 static void
 test_format (int format, int page_mode, int width, int height)
 {
-    sp<SurfaceTexture> st;
+    sp<GLConsumer> st;
     SurfaceTextureClient *stc;
     GLint tex_id = 0;
     sp<ANativeWindow> anw;
@@ -122,7 +122,7 @@ test_format (int format, int page_mode, int width, int height)
 
     printf("testing format %x, page_mode %d\n", format, page_mode);
 
-    st = new SurfaceTexture (tex_id, true, GL_TEXTURE_EXTERNAL_OES);
+    st = new GLConsumer (tex_id, true, GL_TEXTURE_EXTERNAL_OES);
 
     st->setDefaultBufferSize (width, height);
 

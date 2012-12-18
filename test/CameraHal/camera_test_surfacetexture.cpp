@@ -10,7 +10,7 @@
 #include <climits>
 #include <math.h>
 
-#include <gui/SurfaceTexture.h>
+#include <gui/GLConsumer.h>
 #include <gui/SurfaceTextureClient.h>
 #include <ui/GraphicBuffer.h>
 #include <ui/GraphicBufferMapper.h>
@@ -494,14 +494,14 @@ void GLSurface::createProgram(const char* pVertexSource, const char* pFragmentSo
     *outPgm = program;
 }
 
-// SurfaceTexture specific
-sp<SurfaceTexture> SurfaceTextureBase::getST() {
+// GLConsumer specific
+sp<GLConsumer> SurfaceTextureBase::getST() {
      return mST;
 }
 
 void SurfaceTextureBase::initialize(int tex_id, EGLenum tex_target) {
     mTexId = tex_id;
-    mST = new SurfaceTexture(tex_id, true, tex_target);
+    mST = new GLConsumer(tex_id, true, tex_target);
     mSTC = new SurfaceTextureClient(mST);
     mANW = mSTC;
 }
@@ -525,7 +525,7 @@ void SurfaceTextureBase::getId(const char **name) {
     windowTapOut.clear();
 }
 
-// SurfaceTexture with GL specific
+// GLConsumer with GL specific
 
 void SurfaceTextureGL::initialize(int display, int tex_id) {
     GLSurface::initialize(display);
@@ -570,7 +570,7 @@ void SurfaceTextureGL::deinit() {
     GLSurface::deinit();
 }
 
-// drawTexture draws the SurfaceTexture over the entire GL viewport.
+// drawTexture draws the GLConsumer over the entire GL viewport.
 void SurfaceTextureGL::drawTexture() {
     const GLfloat triangleVertices[] = {
         -1.0f, 1.0f,

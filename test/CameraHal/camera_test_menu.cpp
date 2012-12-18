@@ -12,7 +12,7 @@
 
 #include <ui/DisplayInfo.h>
 
-#include <gui/SurfaceTexture.h>
+#include <gui/GLConsumer.h>
 #include <gui/SurfaceTextureClient.h>
 #include <ui/GraphicBuffer.h>
 
