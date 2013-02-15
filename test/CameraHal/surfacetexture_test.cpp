@@ -42,7 +42,7 @@
 #include <climits>
 
 #include <gui/GLConsumer.h>
-#include <gui/SurfaceTextureClient.h>
+#include <gui/Surface.h>
 #include <ui/GraphicBuffer.h>
 #include <ui/GraphicBufferMapper.h>
 
@@ -112,7 +112,7 @@ static void
 test_format (int format, int page_mode, int width, int height)
 {
     sp<GLConsumer> st;
-    SurfaceTextureClient *stc;
+    Surface *stc;
     GLint tex_id = 0;
     sp<ANativeWindow> anw;
     ANativeWindowBuffer* anb[30] = { 0 };
@@ -126,7 +126,7 @@ test_format (int format, int page_mode, int width, int height)
 
     st->setDefaultBufferSize (width, height);
 
-    stc = new SurfaceTextureClient(st);
+    stc = new Surface(st);
     anw = stc;
 
     usage = GRALLOC_USAGE_SW_READ_RARELY |

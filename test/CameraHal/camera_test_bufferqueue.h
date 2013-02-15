@@ -127,7 +127,7 @@ public:
                   BufferSourceInput(camera), mTexId(tex_id) {
         mBufferQueue = new BufferQueue(true, 1);
         sp<IGraphicBufferProducer> bufferProducer = mBufferQueue;
-        mWindowTapIn = new SurfaceTextureClient(bufferProducer);
+        mWindowTapIn = new Surface(bufferProducer);
         mCamera->setBufferSource(mBufferQueue, NULL);
     }
     virtual ~BQ_BufferSourceInput() {

@@ -11,7 +11,7 @@
 #include <math.h>
 
 #include <gui/GLConsumer.h>
-#include <gui/SurfaceTextureClient.h>
+#include <gui/Surface.h>
 #include <ui/GraphicBuffer.h>
 #include <ui/GraphicBufferMapper.h>
 
@@ -502,7 +502,7 @@ sp<GLConsumer> SurfaceTextureBase::getST() {
 void SurfaceTextureBase::initialize(int tex_id, EGLenum tex_target) {
     mTexId = tex_id;
     mST = new GLConsumer(tex_id, true, tex_target);
-    mSTC = new SurfaceTextureClient(mST);
+    mSTC = new Surface(mST);
     mANW = mSTC;
 }
 

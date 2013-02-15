@@ -103,7 +103,7 @@ public:
 
 protected:
     sp<GLConsumer> mST;
-    sp<SurfaceTextureClient> mSTC;
+    sp<Surface> mSTC;
     sp<ANativeWindow> mANW;
     int mTexId;
 };
@@ -206,7 +206,7 @@ public:
         surface_texture = mSurfaceTexture->getST();
         surface_texture->setSynchronousMode(true);
 
-        mWindowTapIn = new SurfaceTextureClient(surface_texture);
+        mWindowTapIn = new Surface(surface_texture);
 #ifndef ANDROID_API_JB_OR_LATER
         mCamera->setBufferSource(mSurfaceTexture->getST(), NULL);
 #else

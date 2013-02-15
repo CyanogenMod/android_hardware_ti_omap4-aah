@@ -13,7 +13,7 @@
 #include <ui/DisplayInfo.h>
 
 #include <gui/GLConsumer.h>
-#include <gui/SurfaceTextureClient.h>
+#include <gui/Surface.h>
 #include <ui/GraphicBuffer.h>
 
 #include <camera/Camera.h>
