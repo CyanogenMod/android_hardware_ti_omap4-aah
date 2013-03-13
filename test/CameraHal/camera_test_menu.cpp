@@ -1105,7 +1105,7 @@ int configureRecorder() {
         }
     }
 
-    if ( recorder->setPreviewSurface( surfaceControl->getSurface() ) < 0 ) {
+    if ( recorder->setPreviewSurface( surfaceControl->getSurface()->getIGraphicBufferProducer() ) < 0 ) {
         printf("error while configuring preview surface\n");
 
         return -1;
@@ -1357,7 +1357,7 @@ int startPreview() {
         camera->sendCommand(CAMERA_CMD_SET_DISPLAY_ORIENTATION, orientation, 0);
 
         camera->setParameters(params.flatten());
-        camera->setPreviewDisplay(previewSurface);
+        camera->setPreviewTexture(previewSurface->getIGraphicBufferProducer());
     }
 
     if(hardwareActive) prevcnt = 0;
