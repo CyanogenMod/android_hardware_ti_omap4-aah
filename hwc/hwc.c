@@ -1312,7 +1312,7 @@ static void decide_supported_cloning(omap4_hwc_device_t *hwc_dev, struct counts 
 }
 
 /* how many large layers can be composited by the DSS */
-static const unsigned int MAX_DSS_LARGE_LAYERS = 2;
+static const unsigned int MAX_DSS_LARGE_LAYERS = 4;
 
 static int can_dss_render_all(omap4_hwc_device_t *hwc_dev, struct counts *num)
 {
