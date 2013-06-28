@@ -68,7 +68,7 @@ public:
         mFW->waitForFrame();
         if (!mDestroying) {
             status_t status;
-            status = mBufferQueue->acquireBuffer(&item);
+            status = mBufferQueue->acquireBuffer(&item, 0);
             if (status == BufferQueue::NO_BUFFER_AVAILABLE) {
                 // no buffer to handle, return and we'll try again
                 return true;
