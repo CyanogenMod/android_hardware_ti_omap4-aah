@@ -501,7 +501,8 @@ sp<GLConsumer> SurfaceTextureBase::getST() {
 
 void SurfaceTextureBase::initialize(int tex_id, EGLenum tex_target) {
     mTexId = tex_id;
-    mST = new GLConsumer(tex_id, true, tex_target);
+    sp<BufferQueue> bq = new BufferQueue();
+    mST = new GLConsumer(bq, tex_id, tex_target);
     mSTC = new Surface(mST);
     mANW = mSTC;
 }

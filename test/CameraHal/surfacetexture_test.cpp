@@ -122,7 +122,8 @@ test_format (int format, int page_mode, int width, int height)
 
     printf("testing format %x, page_mode %d\n", format, page_mode);
 
-    st = new GLConsumer (tex_id, true, GL_TEXTURE_EXTERNAL_OES);
+    sp<BufferQueue> bq = new BufferQueue();
+    st = new GLConsumer (bq, tex_id, GL_TEXTURE_EXTERNAL_OES);
 
     st->setDefaultBufferSize (width, height);
 
