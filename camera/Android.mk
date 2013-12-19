@@ -112,7 +112,7 @@ TI_CAMERAHAL_COMMON_SHARED_LIBRARIES := \
     libgui \
     libion_ti \
     libjpeg \
-    libexif
+    libjhead
 
 ifdef OMAP_ENHANCEMENT_CPCAM
 TI_CAMERAHAL_COMMON_STATIC_LIBRARIES += \
